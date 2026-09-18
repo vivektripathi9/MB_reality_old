@@ -5320,7 +5320,7 @@ main > section,
   align-items: stretch;
   gap: var(--gallery-gap);
   width: max-content;
-  animation: microsite-gallery-marquee 36s linear infinite;
+  animation: microsite-gallery-marquee 48s linear infinite;
 }
 
 .microsite-gallery-marquee:hover .microsite-gallery-track {
