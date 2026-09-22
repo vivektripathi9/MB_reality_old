@@ -214,16 +214,52 @@ main > section,
   visibility: visible;
   pointer-events: auto;
   transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.3s ease,
     visibility 0.3s ease;
 }
 
-.site-header.is-hidden {
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+.site-header.is-scrolled {
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(5, 15, 39, 0.06);
+}
+
+.site-header.is-scrolled .nav a {
+  color: rgba(26, 26, 26, 0.88);
+}
+
+.site-header.is-scrolled .nav a:hover,
+.site-header.is-scrolled .nav a.is-active {
+  color: #1a1a1a;
+}
+
+.site-header.is-scrolled .menu-toggle span {
+  background: #1a1a1a;
+}
+
+.site-header.is-scrolled .btn-contact {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.site-header .btn-contact::before {
+  background: var(--gold);
+  border-color: transparent;
+}
+
+.site-header .btn-contact:hover {
+  color: var(--ink);
+}
+
+.site-header.is-scrolled .btn-contact:hover {
+  color: var(--ink);
+}
+
+.site-header.is-scrolled .btn-contact::before {
+  background: var(--gold);
+  border-color: transparent;
 }
 
 .site-header.nav-open {
@@ -1096,12 +1132,12 @@ main > section,
 }
 
 .contact-page .btn-contact:hover {
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .contact-page .btn-contact::before {
-  background: #fff;
-  border-color: rgba(26, 26, 26, 0.2);
+  background: var(--gold);
+  border-color: transparent;
 }
 
 /* Contact — full-width Get In Touch */
@@ -1673,9 +1709,9 @@ main > section,
 .about-vision {
   position: relative;
   background: transparent;
-  padding: clamp(72px, 10vw, 140px) var(--pad) clamp(48px, 6vw, 80px);
+  padding: calc(var(--header-h) + clamp(28px, 5vw, 56px)) var(--pad) clamp(48px, 6vw, 80px);
   color: #1a1a1a;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .about-vision-spotlight {
@@ -1721,19 +1757,21 @@ main > section,
 
 .about-vision-watermark {
   position: relative;
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(56px, 8vw, 96px);
+  font-family: "Allura", cursive;
+  font-size: clamp(64px, 9vw, 112px);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.15;
   color: #f8ba46;
   white-space: nowrap;
   pointer-events: none;
   display: inline-block;
   width: fit-content;
-  padding-right: 0.08em;
+  padding: 0.1em 0.18em 0.08em 0.2em;
+  overflow: visible;
   opacity: 0;
   clip-path: inset(0 100% 0 0);
   -webkit-clip-path: inset(0 100% 0 0);
+  text-transform: none;
 }
 
 .about-vision.is-inview .about-vision-watermark {
@@ -2771,7 +2809,7 @@ main > section,
   );
 }
 
-/* Belief — split cream copy + full-bleed image */
+/* Belief — split cream copy + image (matched to Ongoing Project media size) */
 .belief {
   background: transparent;
   display: block;
@@ -2784,21 +2822,26 @@ main > section,
   overflow: hidden;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
-  gap: 0;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
   background: transparent;
   isolation: isolate;
-  min-height: min(620px, 80vh);
+  min-height: 0;
+  padding: clamp(40px, 5vw, 80px) max(var(--pad), calc((100% - var(--page)) / 2 + var(--pad)));
+  box-sizing: border-box;
 }
 
 .belief-media {
   position: relative;
   z-index: 1;
   width: 100%;
-  min-height: 100%;
+  height: clamp(280px, 36vw, 460px);
+  min-height: clamp(280px, 36vw, 460px);
   overflow: hidden;
   background: #e8e2d8;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .belief-media img {
@@ -2814,7 +2857,7 @@ main > section,
   z-index: 1;
   background: transparent;
   color: #1a1a1a;
-  padding: clamp(48px, 6vw, 96px) clamp(32px, 5vw, 80px);
+  padding: clamp(12px, 2vw, 24px) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3067,6 +3110,8 @@ main > section,
 .lap-media {
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: clamp(280px, 36vw, 460px);
   min-height: clamp(280px, 36vw, 460px);
   overflow: hidden;
 }
@@ -4261,16 +4306,27 @@ main > section,
   .belief-frame {
     grid-template-columns: 1fr;
     min-height: 0;
+    gap: 20px;
+    padding: clamp(28px, 6vw, 48px) var(--pad);
   }
 
   .belief-media {
-    min-height: 0;
-    aspect-ratio: 3 / 2;
+    height: clamp(220px, 50vw, 320px);
+    min-height: 220px;
+    max-height: 320px;
+    aspect-ratio: auto;
     order: -1;
+    padding: 0;
+  }
+
+  .belief-media img {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
   }
 
   .belief-copy {
-    padding: clamp(40px, 8vw, 64px) clamp(24px, 6vw, 40px);
+    padding: clamp(12px, 2vw, 20px) 0;
   }
 
   .dev-grid {
@@ -4447,12 +4503,12 @@ main > section,
   }
 
   .site-header.nav-open .btn-contact::before {
-    background: #f8ba46;
+    background: var(--gold);
     border-color: transparent;
   }
 
   .site-header.nav-open .btn-contact:hover {
-    color: #1a1a1a;
+    color: var(--ink);
   }
 
   .site-header.nav-open .menu-toggle span {
@@ -4619,6 +4675,7 @@ main > section,
   }
 
   .lap-media {
+    height: clamp(220px, 50vw, 320px);
     min-height: 220px;
     max-height: 320px;
   }
@@ -4748,18 +4805,26 @@ main > section,
   }
 
   .belief-frame {
-    grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
-    min-height: min(540px, 72vh);
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    gap: clamp(20px, 2.5vw, 36px);
+    padding: clamp(36px, 4vw, 56px) var(--pad);
   }
 
   .belief-media {
-    min-height: 100%;
+    height: clamp(280px, 36vw, 460px);
+    min-height: clamp(280px, 36vw, 460px);
     aspect-ratio: auto;
     order: 0;
   }
 
+  .belief-media img {
+    height: 100%;
+    min-height: 0;
+  }
+
   .belief-copy {
-    padding: clamp(36px, 4vw, 64px) clamp(28px, 4vw, 48px);
+    padding: clamp(12px, 2vw, 20px) 0;
   }
 
   .belief-copy h2 {

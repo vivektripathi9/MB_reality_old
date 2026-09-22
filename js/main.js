@@ -32,8 +32,7 @@
 
   const updateHeaderScroll = () => {
     if (!header) return;
-    const atTop = window.scrollY <= 24;
-    header.classList.toggle("is-hidden", !atTop && !header.classList.contains("nav-open"));
+    header.classList.toggle("is-scrolled", window.scrollY > 24);
   };
 
   const sections = document.querySelectorAll("section[id], footer[id]");
@@ -134,7 +133,7 @@
   });
 
   const revealSections = document.querySelectorAll(
-    ".belief, .lap, .spaces, .blogs--featured, .about-team, .about-vision, .microsite-amenities, .blogs-article, .blogs-more"
+    ".belief, .lap, .spaces, .about-testimonials, .blogs--featured, .about-team, .about-vision, .microsite-amenities, .blogs-article, .blogs-more"
   );
   if (revealSections.length) {
     if (reduceMotion || !("IntersectionObserver" in window)) {
