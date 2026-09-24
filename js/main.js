@@ -70,28 +70,6 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Home hero dual-banner slideshow */
-  const heroSlideshow = document.querySelector(".hero--slideshow");
-  if (heroSlideshow) {
-    const slides = [...heroSlideshow.querySelectorAll(".hero-slides .hero-image")];
-    let slideIndex = 0;
-    let timer = null;
-
-    const showSlide = (index) => {
-      slideIndex = (index + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === slideIndex));
-    };
-
-    const startTimer = () => {
-      if (reduceMotion || slides.length < 2) return;
-      clearInterval(timer);
-      timer = setInterval(() => showSlide(slideIndex + 1), 5500);
-    };
-
-    showSlide(0);
-    startTimer();
-  }
-
   const isInternalPageLink = (anchor) => {
     if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return false;
     const href = anchor.getAttribute("href");
