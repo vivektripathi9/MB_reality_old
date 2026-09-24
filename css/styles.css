@@ -2193,11 +2193,11 @@ main > section,
 .about-accordion-panel p strong {
   display: block;
   margin-bottom: 8px;
-  font-family: "Morison", Georgia, "Times New Roman", serif;
-  font-size: clamp(15px, 1.15vw, 17px);
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 400;
-  color: #1a1a1a;
-  line-height: 1.35;
+  color: inherit;
+  line-height: inherit;
 }
 
 .about-accordion-item.is-open .about-accordion-panel p {
