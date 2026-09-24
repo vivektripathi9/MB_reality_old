@@ -578,6 +578,41 @@ main > section,
   display: block;
 }
 
+/* Home dual-banner slideshow */
+.hero--slideshow .hero-frame::after {
+  display: none;
+}
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero--slideshow .hero-image {
+  opacity: 0;
+  transition: opacity 1.1s ease;
+  z-index: 0;
+  object-position: center bottom;
+  image-rendering: auto;
+}
+
+.hero--slideshow .hero-image.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-copy--sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hero-copy {
   position: relative;
   z-index: 2;
@@ -670,7 +705,7 @@ main > section,
 }
 
 /* Home / About / Project hero banner entrance */
-#home .hero-image,
+#home:not(.hero--slideshow) .hero-image,
 .about-hero .hero-image,
 .project-hero .hero-image,
 .blogs-hero .hero-frame {
@@ -4556,6 +4591,10 @@ main > section,
     object-position: center;
   }
 
+  .hero--slideshow .hero-image {
+    object-position: center bottom;
+  }
+
   .about-hero .hero-image {
     object-position: center 40%;
   }
@@ -5204,11 +5243,11 @@ main > section,
 
 .microsite-amenities-grid {
   list-style: none;
-  width: min(100%, 1100px);
+  width: min(100%, 1280px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 40px);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(28px, 3.5vw, 48px) clamp(16px, 2vw, 28px);
 }
 
 .microsite-amenities-grid li {
@@ -5216,11 +5255,16 @@ main > section,
   flex-direction: column;
   align-items: center;
   gap: clamp(14px, 1.8vw, 20px);
+  text-align: center;
   opacity: 0;
   transform: translateY(28px);
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.microsite-amenities-grid li[hidden] {
+  display: none;
 }
 
 .microsite-amenities.is-inview .microsite-amenities-grid li {
@@ -5250,6 +5294,38 @@ main > section,
 
 .microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(6) {
   transition-delay: 0.68s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(7) {
+  transition-delay: 0.76s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(8) {
+  transition-delay: 0.84s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(9) {
+  transition-delay: 0.92s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(10) {
+  transition-delay: 1s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(11) {
+  transition-delay: 1.08s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(12) {
+  transition-delay: 1.16s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(13) {
+  transition-delay: 1.24s;
+}
+
+.microsite-amenities.is-inview .microsite-amenities-grid li:nth-child(14) {
+  transition-delay: 1.32s;
 }
 
 .microsite-amenity-icon {
@@ -5284,6 +5360,41 @@ main > section,
   box-shadow:
     inset 0 2px 8px rgba(255, 255, 255, 0.9),
     inset 0 -4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Original PNG icons — match soft circular container */
+.microsite-amenity-icon:has(img[src*="container_asset/container_"]) {
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f2f2f2 55%, #e4e4e4 100%);
+  box-shadow:
+    inset 0 2px 8px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.microsite-amenity-icon:has(img[src*="container_asset/container_"]) img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* SVG amenity icons — match PNG circular soft-button look */
+.microsite-amenity-icon:has(img[src$=".svg"]) {
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f2f2f2 55%, #e4e4e4 100%);
+  box-shadow:
+    inset 0 2px 8px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.microsite-amenity-icon:has(img[src$=".svg"]) img {
+  width: 52%;
+  height: 52%;
+  object-fit: contain;
+  filter: none;
 }
 
 .microsite-amenities-grid span {
@@ -6141,6 +6252,10 @@ main > section,
 
   .microsite-location-label {
     max-width: 110px;
+  }
+
+  .microsite-amenities-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

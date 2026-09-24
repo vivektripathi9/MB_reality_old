@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <g fill="#2c2c2c">
+    <!-- armchair -->
+    <path d="M14 34c0-3 2-5 5-5h26c3 0 5 2 5 5v4H14v-4Z"/>
+    <path d="M18 22c0-6 4-10 10-10h8c6 0 10 4 10 10v12H18V22Z"/>
+    <rect x="10" y="36" width="6" height="16" rx="3"/>
+    <rect x="48" y="36" width="6" height="16" rx="3"/>
+    <rect x="16" y="48" width="32" height="6" rx="2"/>
+    <rect x="18" y="54" width="5" height="6" rx="1.5"/>
+    <rect x="41" y="54" width="5" height="6" rx="1.5"/>
+  </g>
+</svg>
