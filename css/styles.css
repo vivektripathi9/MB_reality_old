@@ -115,6 +115,18 @@
   padding: 0;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -555,8 +567,12 @@ main > section,
     linear-gradient(180deg, rgba(5, 15, 39, 0.45) 0%, rgba(5, 15, 39, 0.2) 32%, rgba(5, 15, 39, 0.35) 68%, rgba(5, 15, 39, 0.72) 100%);
 }
 
+#home .hero-frame::after {
+  display: none;
+}
+
 .microsite-page .hero-frame::after {
-  display: block;
+  display: none;
 }
 
 .microsite-page .hero {
