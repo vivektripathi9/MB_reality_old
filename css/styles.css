@@ -5244,12 +5244,17 @@ main>section,
 }
 
 .microsite-amenities-grid {
+  --amenity-cols: 6;
+  --amenity-gap-x: clamp(16px, 2vw, 28px);
+  --amenity-gap-y: clamp(28px, 3.5vw, 48px);
   list-style: none;
   width: min(100%, 1280px);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(28px, 3.5vw, 48px) clamp(16px, 2vw, 28px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: var(--amenity-gap-x);
+  row-gap: var(--amenity-gap-y);
 }
 
 .microsite-amenities-grid li {
@@ -5258,6 +5263,9 @@ main>section,
   align-items: center;
   gap: clamp(14px, 1.8vw, 20px);
   text-align: center;
+  flex: 0 1 calc((100% - (var(--amenity-cols) - 1) * var(--amenity-gap-x)) / var(--amenity-cols));
+  max-width: calc((100% - (var(--amenity-cols) - 1) * var(--amenity-gap-x)) / var(--amenity-cols));
+  box-sizing: border-box;
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -5410,6 +5418,43 @@ main>section,
 .microsite-amenity-name {
   font-weight: 700;
   color: #1a1a1a;
+}
+
+.microsite-amenity-name--wfn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.microsite-amenity-name--wfn .wfn-line {
+  display: block;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.microsite-amenity-name--wfn .wfn-home {
+  position: relative;
+  display: inline-block;
+}
+
+.microsite-amenity-name--wfn .wfn-home::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  top: 50%;
+  height: 2px;
+  background: #e53935;
+  transform: rotate(-18deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.microsite-amenity-name--wfn .wfn-nature {
+  color: #6b7a3d;
 }
 
 .microsite-amenity-desc {
@@ -6288,7 +6333,7 @@ main>section,
   }
 
   .microsite-amenities-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    --amenity-cols: 3;
   }
 }
 
@@ -6354,8 +6399,9 @@ main>section,
   }
 
   .microsite-amenities-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(28px, 6vw, 40px) clamp(16px, 4vw, 24px);
+    --amenity-cols: 2;
+    --amenity-gap-x: clamp(16px, 4vw, 24px);
+    --amenity-gap-y: clamp(28px, 6vw, 40px);
   }
 
   .microsite-amenity-icon {
