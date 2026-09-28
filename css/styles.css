@@ -6925,21 +6925,42 @@ main>section,
 }
 
 /*
-  Match 16:9 banner ratio on larger screens so left/right
-  content is not cropped by object-fit: cover.
+  Full-width 16:9 hero. If viewport is shorter than 16:9,
+  keep bottom of the banner visible (no side padding).
 */
 @media (min-width: 768px) {
-  .hero,
+  #home.hero {
+    width: 100%;
+    height: min(100svh, calc(100vw * 9 / 16));
+    max-height: 100svh;
+    margin-inline: 0;
+  }
+
+  #home .hero-frame {
+    width: 100%;
+    height: 100%;
+  }
+
+  #home .hero-slide img,
+  #home .hero-image {
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
   .about-hero,
   .project-hero,
   .blogs-hero {
+    width: 100%;
     height: min(100svh, calc(100vw * 9 / 16));
     max-height: 100svh;
+    margin-inline: 0;
   }
 
-  .hero-image,
-  #home .hero-slide img {
-    object-position: center center;
+  .about-hero .hero-image,
+  .project-hero .hero-image,
+  .blogs-hero .hero-image {
+    object-fit: cover;
+    object-position: center bottom;
   }
 }
 
