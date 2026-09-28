@@ -593,7 +593,7 @@ main>section,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center bottom;
   display: block;
 }
 
@@ -6920,16 +6920,24 @@ main>section,
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center;
-}
-
-/* Keep the hidden SEO heading accessible */
-#home .hero-slide img {
+  object-position: center bottom;
   backface-visibility: hidden;
 }
 
-/* Mobile image positioning */
-@media (max-width: 767px) {
+/*
+  Match 16:9 banner ratio on larger screens so left/right
+  content is not cropped by object-fit: cover.
+*/
+@media (min-width: 768px) {
+  .hero,
+  .about-hero,
+  .project-hero,
+  .blogs-hero {
+    height: min(100svh, calc(100vw * 9 / 16));
+    max-height: 100svh;
+  }
+
+  .hero-image,
   #home .hero-slide img {
     object-position: center center;
   }
