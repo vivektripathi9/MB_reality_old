@@ -35,15 +35,21 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-frame">
-        <img
-          class="hero-image"
-          src="assets/images_for_mb/New_images/bannert_16x9_1920x1080.png"
-          alt="Thoughtfully planned nature-inspired villa plot community"
-          width="1920"
-          height="1080"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcset="assets/images_for_mb/New_images/mb1%20(1).png"
+          />
+          <img
+            class="hero-image"
+            src="assets/images_for_mb/New_images/bannert_16x9_1920x1080.png"
+            alt="Thoughtfully planned nature-inspired villa plot community"
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <h1 class="visually-hidden">
           Building Places That Inspire Better Living
         </h1>
