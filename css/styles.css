@@ -4406,12 +4406,35 @@ main>section,
 }
 
 @media (max-width: 767px) {
+  :root {
+    --header-h: 72px;
+  }
+
   .menu-toggle {
     display: flex;
     position: fixed;
     top: 12px;
     right: max(12px, env(safe-area-inset-right, 0px));
     z-index: 80;
+  }
+
+  .header-inner {
+    min-height: 64px;
+    padding: 8px var(--pad);
+    gap: 12px;
+  }
+
+  .site-header .logo-img,
+  .logo-img {
+    width: 88px !important;
+    height: auto !important;
+    max-height: 52px !important;
+  }
+
+  .site-header.nav-open .logo-img {
+    width: 88px !important;
+    height: auto !important;
+    max-height: 52px !important;
   }
 
   body.nav-open {
